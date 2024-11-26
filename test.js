@@ -25,3 +25,4 @@ let point = position(200, 1, 100, 1, 100, 1)
 let test = new Test(point.x, point.y)
 
 test.corner([vp.left_vp, 100, 1, 0], [vp.right_vp, 100, 1, 0])
+test.corner([1, 100, 1, 0], [0, 100, 1, 0])
