@@ -510,8 +510,8 @@ class Point{
         // x y = [vp, length] vp is Point or 1 or 0
         // 1 --> vertical, 0 --> horizontal
 
-
         // everything so compact lol
+        
 
         let x_1 = this.line(x[0], x[1]/2, 1, center, 0,0,0,style)[1]
         let x_2 = this.line(x[0], x[1]/2, 0, center, 0,0,0,style)[1]
@@ -527,6 +527,12 @@ class Point{
 
         li.push(x_1.line(y[0], y[1]/2, 0, 1, 0,0,0,style)[1])
         li.push(li[2].self_line(x_2.line(y[0], y[1]/2, 0, 1,0,0,0,style)[1], style)[1])
+
+        
+        if (x[0].angle >= 76 & x[0].angle <= 86) {
+            li.push('error')
+            
+        }
 
         return li
 
@@ -584,11 +590,13 @@ class VanishingPoint {
         this.left_vp.setAttri('name', `VP-${angle1}`)
         this.left_vp.setAttri('type', 'vp')
         this.left_vp.setAttri('name-visible', 1)
+        this.left_vp.angle = angle1
 
         this.right_vp = new Point(v2[0], v2[1])
         this.right_vp.setAttri('name', `VP-${angle2}`)
         this.right_vp.setAttri('type', 'vp')
         this.right_vp.setAttri('name-visible', 1)
+        this.right_vp.angle = angle2
 
         // measuring points
         this.left_vp.mp = new Point(this.left_vp.x + this.left_vp.self_distance(stationP), this.left_vp.y)

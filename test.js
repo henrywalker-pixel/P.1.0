@@ -22,9 +22,14 @@ class Test extends Point  {
 }
 
 function f(ts, r) {
-    // 76 - 86, does not work at this angle range (76<->86, 90-76<->90-86)
+    // 76 - 86, does not work at this angle range (76<->86, 90-76<->90-86)  < fixed >
     let obj = {}
     let dist = []
+    
+    if (ts.includes('error')) {
+        ts.pop('error')
+        var error = true
+    }
 
     for (let i = 0; i < 4; i++) {
                 obj[ts[i].self_distance(new Point(0,0))] = ts[i]
@@ -48,6 +53,18 @@ function f(ts, r) {
         ctx.fill()
         ctx.closePath()}
 
+    if (error) {
+        ctx.beginPath()
+        ctx.fillStyle = 'orange'
+        ctx.moveTo(form[0].x, form[0].y)
+        ctx.lineTo(form[1].x, form[1].y)
+        ctx.lineTo(form[2].x, form[2].y)
+        ctx.lineTo(form[3].x, form[3].y)
+        ctx.fill()
+        ctx.stroke()
+        ctx.closePath()
+    }
+
     return form
 
 }
@@ -59,9 +76,6 @@ let ts = test.square([vp.left_vp, 200], [vp.right_vp, 200])
 
 let pest = new Test(ts[0].x, ts[0].y)
 
-pest.corner([ts[1], ts[0].self_distance(ts[1]), 1, 1], [ts[2], ts[0].self_distance(ts[2]), 1, 1], 50, 1)
-
-
 /* 
 four points exists, the distance from (0,0) to each of those in order of lowest to highest 0, 1, 2, 3
 connection
@@ -69,20 +83,21 @@ connection
 */
     
 
-// an = 1 
-// let inter = setInterval(() => {
-//     ctx.clearRect(0,0,1350,600)
-//     let v = new VanishingPoint(an, 90-an)
-//     let s = test.square([v.left_vp, 200], [v.right_vp, 200])
+an = 1
+let inter = setInterval(() => {
+    ctx.clearRect(0,0,1350,600)
+    let v = new VanishingPoint(an, 90-an)
+    let s = test.square([v.left_vp, 200], [v.right_vp, 200],0,'black')
 
-//     f(s)
-//     // for (let i = 0; i < 4; i++) {
-//     //     s[i].self_line(cv)
-//     // }
+    f(s, 1)
+    console.log(an);
+    
+    // for (let i = 0; i < 4; i++) {
+    //     s[i].self_line(cv)
+    // }
 
-//     console.log(an, 90-an)
-//     if (an < 90) {an++} else {an = 1}
-// }, 50);
+    if (an < 90) {an++} else {an = 1}
+}, 50);
 
 
 
