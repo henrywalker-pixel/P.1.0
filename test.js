@@ -76,6 +76,8 @@ let ts = test.square([vp.left_vp, 200], [vp.right_vp, 200])
 
 let pest = new Test(ts[0].x, ts[0].y)
 
+test.to(vp.left_vp, 100, 1, 1, 1)
+
 /* 
 four points exists, the distance from (0,0) to each of those in order of lowest to highest 0, 1, 2, 3
 connection
@@ -83,21 +85,21 @@ connection
 */
     
 
-an = 1
-let inter = setInterval(() => {
-    ctx.clearRect(0,0,1350,600)
-    let v = new VanishingPoint(an, 90-an)
-    let s = test.square([v.left_vp, 200], [v.right_vp, 200],0,'black')
+// an = 1
+// let inter = setInterval(() => {
+//     ctx.clearRect(0,0,1350,600)
+//     let v = new VanishingPoint(an, 90-an)
+//     let s = test.square([v.left_vp, 200], [v.right_vp, 200],0,'black')
 
-    f(s, 1)
-    console.log(an);
+//     f(s, 1)
+//     console.log(an);
     
-    // for (let i = 0; i < 4; i++) {
-    //     s[i].self_line(cv)
-    // }
+//     // for (let i = 0; i < 4; i++) {
+//     //     s[i].self_line(cv)
+//     // }
 
-    if (an < 90) {an++} else {an = 1}
-}, 50);
+//     if (an < 90) {an++} else {an = 1}
+// }, 50);
 
 
 

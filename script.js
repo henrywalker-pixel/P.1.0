@@ -424,9 +424,19 @@ class Point{
     }
     to(vp, length, direction, r, true_length, dev, limitLine, style) {
 
+        // toward_vp with more feature, ig
+
         if (true_length) {
 
             console.info("[to] (true_length) not supported yet. Proceeding with (true_length) = 0")
+
+            // this.line(0, 100, 1, 1, 1)[1].line(1, 70, 1, 1, 1)
+            let theta = Math.atan(this.self_const(vp)[0])
+            let targetx = -Math.cos(theta) * length + this.x
+            let targety = -Math.sin(theta) * length + this.y
+
+            this.self_line(new Point(targetx, targety))
+            
 
             if (limitLine) {
                 console.info(`[to] ${this.attri.name}[${this.x},${this.y}], (true_length) take priority over limitLine`)
