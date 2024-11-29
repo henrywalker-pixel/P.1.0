@@ -145,6 +145,7 @@ class Point{
         ctx.lineTo(obj.x, obj.y)
         ctx.stroke()
         ctx.closePath()
+        return [this, obj]
     }
 
     render() {
@@ -520,11 +521,14 @@ class Point{
             this.line(y[0], y[1]/2, 1, 1, 0,0,0,style)[1]
             this.line(y[0], y[1]/2, 0, 1, 0,0,0,style)[1]
         }
+        let li = []
+        li.push(x_1.line(y[0], y[1]/2, 1, 1, 0,0,0,style)[1])
+        li.push(li[0].self_line(x_2.line(y[0], y[1]/2, 1, 1,0,0,0,style)[1], style)[1])
 
-        x_1.line(y[0], y[1]/2, 1, 1, 0,0,0,style)[1].self_line(x_2.line(y[0], y[1]/2, 1, 1,0,0,0,style)[1], style)
-        x_1.line(y[0], y[1]/2, 0, 1, 0,0,0,style)[1].self_line(x_2.line(y[0], y[1]/2, 0, 1,0,0,0,style)[1], style)
+        li.push(x_1.line(y[0], y[1]/2, 0, 1, 0,0,0,style)[1])
+        li.push(li[2].self_line(x_2.line(y[0], y[1]/2, 0, 1,0,0,0,style)[1], style)[1])
 
-        return 1
+        return li
 
     }
 
